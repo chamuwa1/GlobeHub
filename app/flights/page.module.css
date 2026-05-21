@@ -1,0 +1,48 @@
+.main { flex: 1; padding: 4rem 1rem; display: flex; justify-content: center; animation: fadeIn 0.8s ease-out; background-image: linear-gradient(rgba(2, 6, 23, 0.85), rgba(2, 6, 23, 0.95)), url('/bg_flights.png'); background-size: cover; background-position: center; background-attachment: fixed; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+.container { width: 100%; max-width: 1000px; padding: 2rem; display: flex; flex-direction: column; gap: 2rem; }
+.title { text-align: center; font-size: 2.5rem; color: #fff; }
+.searchSection { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+.input { padding: 0.75rem 1.5rem; border-radius: 999px; border: 1px solid var(--glass-border); background: rgba(0,0,0,0.2); color: white; flex: 1; min-width: 200px; outline: none; transition: 0.3s; }
+.input:focus { border-color: var(--accent); box-shadow: 0 0 15px var(--accent-glow); }
+.searchButton { padding: 0.75rem 2rem; border-radius: 999px; background: var(--accent); color: white; border: none; cursor: pointer; font-weight: bold; transition: 0.3s; }
+.searchButton:hover { transform: translateY(-2px); box-shadow: 0 4px 15px var(--accent-glow); }
+.error { color: #fca5a5; background: rgba(239, 68, 68, 0.2); padding: 1rem; border-radius: 8px; text-align: center; }
+.loading { text-align: center; color: #93c5fd; animation: pulse 1.5s infinite; }
+@keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
+.empty { text-align: center; color: #94a3b8; width: 100%; padding: 2rem; font-size: 1.1rem; }
+.grid { display: grid; gap: 1.5rem; }
+.card { background: rgba(15, 23, 42, 0.65); border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 24px; padding: 2rem; transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05); }
+.card:hover { transform: translateY(-6px); border-color: rgba(59, 130, 246, 0.3); box-shadow: 0 15px 40px rgba(59, 130, 246, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.1); background: rgba(30, 41, 59, 0.6); }
+.cardHeader { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255, 255, 255, 0.05); padding-bottom: 1.5rem; margin-bottom: 1.5rem; color: #fff; }
+.status { padding: 0.4rem 1rem; border-radius: 999px; font-weight: 700; font-size: 0.85rem; letter-spacing: 0.5px; text-transform: uppercase; background: rgba(255,255,255,0.05); }
+.status[data-status="active"] { color: #4ade80; border: 1px solid rgba(74, 222, 128, 0.3); box-shadow: 0 0 15px rgba(74, 222, 128, 0.1); }
+.status[data-status="scheduled"] { color: #60a5fa; border: 1px solid rgba(96, 165, 250, 0.3); box-shadow: 0 0 15px rgba(96, 165, 250, 0.1); }
+.status[data-status="delayed"] { color: #f87171; border: 1px solid rgba(248, 113, 113, 0.3); box-shadow: 0 0 15px rgba(248, 113, 113, 0.1); }
+.status[data-status="landed"] { color: #c084fc; border: 1px solid rgba(192, 132, 252, 0.3); box-shadow: 0 0 15px rgba(192, 132, 252, 0.1); }
+.cardBody { display: flex; flex-direction: column; gap: 1.5rem; }
+.route { display: flex; justify-content: space-between; align-items: center; color: #fff; text-align: center; }
+.label { font-size: 0.85rem; color: #64748b; letter-spacing: 1.5px; margin-bottom: 0.75rem; text-transform: uppercase; font-weight: 600; }
+.arrow { font-size: 2.5rem; opacity: 0.3; color: #60a5fa; }
+.route h3 { font-size: 2rem; font-family: var(--font-space), sans-serif; font-weight: 700; margin-bottom: 0.25rem; }
+.route p { color: #cbd5e1; font-weight: 500; }
+.details { text-align: center; color: #fca5a5; font-size: 0.95rem; font-weight: 500; }
+
+@media (max-width: 768px) {
+  .title {
+    font-size: 2rem;
+  }
+  .searchSection {
+    flex-direction: column;
+  }
+  .searchButton {
+    width: 100%;
+  }
+  .route {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  .arrow {
+    transform: rotate(90deg);
+  }
+}

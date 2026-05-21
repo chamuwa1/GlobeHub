@@ -1,0 +1,38 @@
+.main { flex: 1; padding: 4rem 1rem; display: flex; justify-content: center; animation: fadeIn 0.8s ease-out; background-image: linear-gradient(rgba(2, 6, 23, 0.85), rgba(2, 6, 23, 0.95)), url('/bg_markets.png'); background-size: cover; background-position: center; background-attachment: fixed; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+.container { width: 100%; max-width: 1200px; padding: 2rem; display: flex; flex-direction: column; gap: 2rem; }
+.title { text-align: center; font-size: 2.5rem; color: #fff; }
+.filterSection { display: flex; justify-content: center; gap: 1rem; margin-bottom: 1rem; }
+.filterBtn { padding: 0.75rem 2rem; border-radius: 999px; background: rgba(0,0,0,0.3); border: 1px solid var(--glass-border); color: #94a3b8; font-weight: bold; cursor: pointer; transition: 0.3s; }
+.filterBtn:hover { color: #fff; background: rgba(0,0,0,0.5); }
+.filterBtn.active { background: var(--accent); color: #fff; border-color: var(--accent); box-shadow: 0 0 15px var(--accent-glow); }
+.error { color: #fca5a5; background: rgba(239, 68, 68, 0.2); padding: 1rem; border-radius: 8px; text-align: center; }
+.loading { text-align: center; color: #93c5fd; animation: pulse 1.5s infinite; }
+@keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.5rem; }
+.card { background: rgba(15, 23, 42, 0.65); border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 24px; padding: 2rem; display: flex; flex-direction: column; gap: 1.5rem; transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); position: relative; overflow: hidden; box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05); }
+.card:hover { transform: translateY(-6px); border-color: rgba(59, 130, 246, 0.3); box-shadow: 0 15px 40px rgba(59, 130, 246, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.1); background: rgba(30, 41, 59, 0.6); }
+.cardHeader { display: flex; align-items: center; gap: 1rem; color: #fff; }
+.coinIcon { width: 40px; height: 40px; border-radius: 50%; box-shadow: 0 4px 10px rgba(0,0,0,0.3); }
+.symbol { font-size: 0.85rem; color: #64748b; letter-spacing: 1px; font-weight: 600; }
+.cardBody h2 { font-size: 2.2rem; color: #fff; margin-bottom: 0.25rem; font-family: var(--font-space), sans-serif; font-weight: 700; }
+.positive { color: #4ade80; font-weight: 600; display: flex; align-items: center; gap: 0.2rem; }
+.negative { color: #f87171; font-weight: 600; display: flex; align-items: center; gap: 0.2rem; }
+.volume { color: #64748b; font-size: 0.85rem; margin-top: 0.5rem; font-weight: 500; }
+.chartContainer { height: 80px; width: 100%; margin-top: 0.5rem; opacity: 0.9; }
+
+@media (max-width: 768px) {
+  .title {
+    font-size: 2rem;
+  }
+  .filterSection {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .filterBtn {
+    width: 100%;
+  }
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}
