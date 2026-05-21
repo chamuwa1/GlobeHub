@@ -32,6 +32,15 @@
   background: #000;
 }
 
+/* Invisible overlay zones to guarantee mobile scrolling */
+.scrollZoneTop, .scrollZoneBottom {
+  display: none;
+  position: absolute;
+  left: 0;
+  width: 100%;
+  z-index: 10;
+}
+
 .globeContainer {
   position: absolute;
   top: 0;
@@ -252,6 +261,16 @@
 
 
 @media (max-width: 768px) {
+  .scrollZoneTop {
+    display: block;
+    top: 0;
+    height: 12vh;
+  }
+  .scrollZoneBottom {
+    display: block;
+    bottom: 0;
+    height: 25vh;
+  }
   .title {
     font-size: 2.2rem;
   }

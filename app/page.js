@@ -134,59 +134,7 @@ export default function Home() {
     }
   };
 
-  const handleGlobeInteraction = (e) => {
-    if (!globeEl.current) return;
-    const controls = globeEl.current.controls();
-    if (!controls) return;
-    
-    const rect = e.currentTarget.getBoundingClientRect();
-    const centerX = rect.width / 2;
-    const centerY = rect.height / 2;
-    
-    let clientX = e.clientX;
-    let clientY = e.clientY;
-    
-    if (e.touches && e.touches.length > 0) {
-      clientX = e.touches[0].clientX;
-      clientY = e.touches[0].clientY;
-    }
-    
-    if (clientX === undefined || clientY === undefined) return;
-    
-    const pointerX = clientX - rect.left;
-    const pointerY = clientY - rect.top;
-    
-    const distance = Math.sqrt(Math.pow(pointerX - centerX, 2) + Math.pow(pointerY - centerY, 2));
-    const altitude = globeEl.current.pointOfView()?.altitude || 2.5;
-    
-    // Estimate visual radius of the globe in pixels based on altitude
-    const baseRadius = (Math.min(rect.width, rect.height) / 2) * (2.2 / altitude);
-    
-    // On touch devices, grant a significantly larger hit area so users can easily rotate/zoom
-    // while still keeping the extreme corners/edges available for scrolling down the page.
-    const isTouch = e.touches && e.touches.length > 0;
-    const padding = isTouch ? 100 : 20;
-    
-    // Enable controls only if pointer is within the visual bounds of the globe
-    if (distance < baseRadius + padding) {
-      controls.enableZoom = true;
-      controls.enableRotate = true;
-      if (isTouch) e.currentTarget.style.touchAction = 'none'; // Prevent browser scroll to allow 3D rotation
-    } else {
-      controls.enableZoom = false;
-      controls.enableRotate = false;
-      if (isTouch) e.currentTarget.style.touchAction = 'auto'; // Allow browser scroll
-    }
-  };
 
-  const resetGlobeInteraction = () => {
-    if (!globeEl.current) return;
-    const controls = globeEl.current.controls();
-    if (controls) {
-      controls.enableZoom = false;
-      controls.enableRotate = false;
-    }
-  };
 
   const scrollToGlobe = () => {
     window.scrollBy({ top: window.innerHeight, behavior: 'smooth' });
@@ -258,15 +206,12 @@ export default function Home() {
 
 
 
+      {/* Mobile Scroll Zones - invisible overlays on the edges to guarantee vertical scrolling */}
+      <div className={styles.scrollZoneTop}></div>
+      <div className={styles.scrollZoneBottom}></div>
+
       {mounted && (
-        <div 
-          className={styles.globeContainer}
-          onMouseMove={handleGlobeInteraction}
-          onTouchStart={handleGlobeInteraction}
-          onTouchMove={handleGlobeInteraction}
-          onMouseLeave={resetGlobeInteraction}
-          onTouchEnd={resetGlobeInteraction}
-        >
+        <div className={styles.globeContainer}>
           <Globe
             ref={globeEl}
             globeImageUrl="https://unpkg.com/three-globe/example/img/earth-blue-marble.jpg"
