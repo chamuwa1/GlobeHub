@@ -171,9 +171,11 @@ export default function Home() {
     if (distance < baseRadius + padding) {
       controls.enableZoom = true;
       controls.enableRotate = true;
+      if (isTouch) e.currentTarget.style.touchAction = 'none'; // Prevent browser scroll to allow 3D rotation
     } else {
       controls.enableZoom = false;
       controls.enableRotate = false;
+      if (isTouch) e.currentTarget.style.touchAction = 'auto'; // Allow browser scroll
     }
   };
 
