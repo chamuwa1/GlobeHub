@@ -2,6 +2,8 @@
 
 **GlobeHub** is a premium, interactive global dashboard built with Next.js. It features a stunning 3D WebGL globe and aggregates real-time data across four major domains: Weather, News, Financial Markets, and Flight Tracking—all presented in a sleek, unified glassmorphism UI.
 
+> 🚀 **Live Demo:** [https://globehub-web.netlify.app/](https://globehub-web.netlify.app/) (Hosted on Netlify)
+
 ![GlobeHub Hero](/public/hero_bg.png)
 
 ## ✨ Key Features
