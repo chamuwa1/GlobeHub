@@ -1,0 +1,38 @@
+.topButton {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  width: 56px;
+  height: 56px;
+  background: rgba(15, 23, 42, 0.6);
+  border: 1px solid rgba(255,255,255,0.1);
+  color: #fff;
+  border-radius: 50%;
+  font-size: 1.5rem;
+  cursor: pointer;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.topButton:hover {
+  background: linear-gradient(135deg, #3b82f6, #6366f1);
+  border-color: transparent;
+  transform: translateY(-6px) scale(1.05);
+  box-shadow: 0 15px 35px rgba(59, 130, 246, 0.4);
+}
+
+@media (max-width: 768px) {
+  .topButton {
+    bottom: 1.5rem;
+    right: 1.5rem;
+    width: 48px;
+    height: 48px;
+    font-size: 1.2rem;
+  }
+}

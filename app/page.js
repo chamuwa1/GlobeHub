@@ -17,24 +17,10 @@ export default function Home() {
   const [modalError, setModalError] = useState(null);
   const [filteredLabels, setFilteredLabels] = useState([]);
   
-  const [showTopBtn, setShowTopBtn] = useState(false);
-  
   const router = useRouter();
 
   useEffect(() => {
     setMounted(true);
-    
-    // Add scroll listener for Top Up button (native window scroll)
-    const handleScroll = () => {
-      if (window.scrollY > window.innerHeight / 2) {
-        setShowTopBtn(true);
-      } else {
-        setShowTopBtn(false);
-      }
-    };
-    
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   // Fetch Map Data
@@ -174,10 +160,15 @@ export default function Home() {
     const altitude = globeEl.current.pointOfView()?.altitude || 2.5;
     
     // Estimate visual radius of the globe in pixels based on altitude
-    const maxRadius = (Math.min(rect.width, rect.height) / 2) * (2.2 / altitude);
+    const baseRadius = (Math.min(rect.width, rect.height) / 2) * (2.2 / altitude);
+    
+    // On touch devices, grant a significantly larger hit area so users can easily rotate/zoom
+    // while still keeping the extreme corners/edges available for scrolling down the page.
+    const isTouch = e.touches && e.touches.length > 0;
+    const padding = isTouch ? 100 : 20;
     
     // Enable controls only if pointer is within the visual bounds of the globe
-    if (distance < maxRadius + 20) {
+    if (distance < baseRadius + padding) {
       controls.enableZoom = true;
       controls.enableRotate = true;
     } else {
@@ -197,10 +188,6 @@ export default function Home() {
 
   const scrollToGlobe = () => {
     window.scrollBy({ top: window.innerHeight, behavior: 'smooth' });
-  };
-
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   return (
@@ -267,12 +254,7 @@ export default function Home() {
         </div>
       )}
 
-      {/* Scroll to Top Button */}
-      {showTopBtn && (
-        <button className={styles.topButton} onClick={scrollToTop} aria-label="Scroll to top" title="Go to top">
-          ↑
-        </button>
-      )}
+
 
       {mounted && (
         <div 

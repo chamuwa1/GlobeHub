@@ -2,6 +2,7 @@ import { Inter, Space_Grotesk } from "next/font/google";
 import Navbar from "../components/Navbar/Navbar";
 import SplashScreen from "../components/SplashScreen/SplashScreen";
 import Footer from "../components/Footer/Footer";
+import ScrollToTop from "../components/ScrollToTop/ScrollToTop";
 import "./globals.css";
 import Script from "next/script";
 
@@ -41,6 +42,7 @@ export default function RootLayout({ children }) {
 
         <SplashScreen />
         <Navbar />
+        <ScrollToTop />
 
         {children}
         <Footer />
